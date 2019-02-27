@@ -4,7 +4,6 @@ LABEL maintainer "Michael Molchanov <mmolchanov@adyax.com>"
 
 USER root
 
-RUN mkdir -p /opt/terminus \
-  && cd /opt/terminus \
-  && curl -O https://raw.githubusercontent.com/pantheon-systems/terminus-installer/master/builds/installer.phar \
-  && php installer.phar install --install-dir=/opt/terminus
+ENV TERMINUS_VERSION=2.0.0
+RUN wget -O /usr/local/bin/terminus https://github.com/pantheon-systems/terminus/releases/download/${TERMINUS_VERSION}/terminus.phar \
+  && chmod +x /usr/local/bin/terminus
